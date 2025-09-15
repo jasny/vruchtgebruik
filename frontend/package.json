@@ -1,15 +1,17 @@
 {
-  "name": "frontend",
+  "name": "vruchtgebruik",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "prettier": {
-    "printWidth": 100,
+    "printWidth": 120,
     "singleQuote": true,
     "overrides": [
       {
@@ -22,12 +24,16 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^20.3.0",
     "@angular/common": "^20.3.0",
     "@angular/compiler": "^20.3.0",
     "@angular/core": "^20.3.0",
     "@angular/forms": "^20.3.0",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
+    "prettier": "^3.6.2",
+    "primeicons": "^7.0.0",
+    "primeng": "^20.1.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
