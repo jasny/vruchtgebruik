@@ -1,0 +1,30 @@
+.p-card {
+  width: 100%;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+  max-width: 480px;
+}
+
+h2 {
+  margin-top: 0.5rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.actions {
+  margin-top: 1.5rem;
+
+  button {
+    width: 100%;
+  }
+}
+
+.gender-select {
+  display: inline-block;
+}

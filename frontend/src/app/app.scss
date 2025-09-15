@@ -1,0 +1,10 @@
+:host {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+}
+
+app-calculation-form {
+  display: block;
+  width: 30rem;
+}

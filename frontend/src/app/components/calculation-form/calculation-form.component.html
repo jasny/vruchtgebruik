@@ -1,0 +1,74 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" aria-label="Calculation form">
+  <p-card>
+    <ng-template #title>
+      <h2>Vruchtgebruik Berekening</h2>
+    </ng-template>
+
+    <div class="form">
+      <div class="field">
+        <label for="value">Eigendomswaarde</label>
+        <p-inputNumber
+          inputId="value"
+          formControlName="value"
+          mode="currency"
+          currency="EUR"
+          [locale]="localeId"
+          [showButtons]="false"
+          [minFractionDigits]="0"
+          [maxFractionDigits]="2"
+          [useGrouping]="true"
+          [min]="0"
+          [invalid]="form.controls.value.touched && form.controls.value.invalid"
+        />
+      </div>
+
+      <div class="field">
+        <label for="age">Leeftijd</label>
+        <p-inputNumber
+          inputId="age"
+          formControlName="age"
+          [min]="0"
+          [max]="120"
+          [showButtons]="false"
+          [useGrouping]="false"
+          [minFractionDigits]="0"
+          [maxFractionDigits]="0"
+          [invalid]="form.controls.age.touched && form.controls.age.invalid"
+        />
+      </div>
+
+      <div class="field">
+        <span class="label">Geslacht</span>
+        <div class="gender-select">
+          <p-selectButton
+            [options]="genderOptions"
+            formControlName="gender"
+            optionLabel="label"
+            optionValue="value"
+            [invalid]="form.controls.gender.touched && form.controls.gender.invalid"
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="method">Berekeningsmethode</label>
+        <p-select
+          inputId="method"
+          formControlName="method"
+          [options]="methodOptions"
+          optionLabel="label"
+          optionValue="value"
+          [editable]="false"
+          placeholder="Selecteer methode"
+          [invalid]="form.controls.method.touched && form.controls.method.invalid"
+        />
+      </div>
+    </div>
+
+    <ng-template #footer>
+      <div class="actions">
+        <button pButton type="submit">Berekenen</button>
+      </div>
+    </ng-template>
+  </p-card>
+</form>

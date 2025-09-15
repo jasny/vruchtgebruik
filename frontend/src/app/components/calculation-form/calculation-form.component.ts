@@ -1,0 +1,74 @@
+import { ChangeDetectionStrategy, Component, LOCALE_ID, inject, output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { SelectModule } from 'primeng/select'
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card'
+
+export type Gender = 'man' | 'vrouw' | 'x';
+export type Method = 'een_leven';
+
+export interface CalculationFormValue {
+  value: number;
+  age: number;
+  gender: Gender;
+  method: Method;
+}
+
+@Component({
+  selector: 'app-calculation-form',
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    CardModule,
+    InputNumberModule,
+    SelectButtonModule,
+    SelectModule,
+    ButtonModule,
+  ],
+  templateUrl: './calculation-form.component.html',
+  styleUrl: './calculation-form.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'calculation-form'
+  }
+})
+export class CalculationFormComponent {
+  readonly localeId = inject(LOCALE_ID);
+  private readonly fb = inject(FormBuilder);
+
+  readonly genderOptions = [
+    { label: 'Man', value: 'man' as const },
+    { label: 'Vrouw', value: 'vrouw' as const },
+    { label: 'Onbepaald', value: 'x' as const },
+  ];
+
+  readonly methodOptions = [
+    { label: 'Één leven', value: 'een_leven' as const }
+  ];
+
+  readonly form = this.fb.group({
+    value: this.fb.control<number | null>(null, {
+      validators: [Validators.required, Validators.min(0), Validators.pattern(/^\d+(?:[\.,]\d{1,2})?$/)]
+    }),
+    age: this.fb.control<number | null>(null, {
+      validators: [Validators.required, Validators.min(0), Validators.max(150), Validators.pattern(/^\d+$/)]
+    }),
+    gender: this.fb.control<Gender | null>(null, { validators: [Validators.required] }),
+    method: this.fb.control<Method | null>('een_leven', { validators: [Validators.required] })
+  });
+
+  readonly submitted = output<CalculationFormValue>();
+
+  onSubmit(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    const data = this.form.getRawValue();
+    this.submitted.emit(data as NonNullableProps<typeof data>);
+  }
+}

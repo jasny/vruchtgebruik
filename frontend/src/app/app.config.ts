@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Lara from '@primeuix/themes/lara';
@@ -25,6 +25,7 @@ const Theme = definePreset(Lara, {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    { provide: LOCALE_ID, useValue: 'nl-NL' },
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimationsAsync(),
