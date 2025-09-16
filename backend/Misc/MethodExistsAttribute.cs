@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using backend.Services;
 
-namespace backend.Models;
+namespace backend.Misc;
 
 public sealed class MethodExistsAttribute : ValidationAttribute
 {

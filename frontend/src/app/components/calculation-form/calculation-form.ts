@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, inject, LOCALE_ID, input, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  LOCALE_ID,
+  input,
+  output,
+  computed,
+  OnInit,
+  Input
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -28,6 +38,7 @@ import { CalculationInput, Gender, MethodOption } from '@lib/types'
 })
 export class CalculationForm {
   readonly localeId = inject(LOCALE_ID);
+  public methodOptions: MethodOption[] = [];
   private readonly fb = inject(FormBuilder);
 
   readonly genderOptions = [
@@ -36,7 +47,16 @@ export class CalculationForm {
     { label: 'Onbepaald', value: 'x' as const },
   ];
 
-  readonly methods = input<readonly MethodOption[]>([]);
+  @Input() set methods(options: readonly MethodOption[] | null) {
+    if (!options?.length) return;
+
+    this.methodOptions = [...options];
+
+    const ctrl = this.form.controls.method;
+    if (ctrl.value == null) {
+      ctrl.setValue(options[0].value, { emitEvent: false });
+    }
+  }
 
   readonly form = this.fb.group({
     value: this.fb.control<number | null>(null, {
@@ -46,7 +66,7 @@ export class CalculationForm {
       validators: [Validators.required, Validators.min(0), Validators.max(150), Validators.pattern(/^\d+$/)]
     }),
     gender: this.fb.control<Gender | null>(null, { validators: [Validators.required] }),
-    method: this.fb.control<string | null>(this.methods()[0]?.value ?? null, { validators: [Validators.required] })
+    method: this.fb.control<string | null>(null, { validators: [Validators.required] })
   });
 
   readonly submitted = output<CalculationInput>();
