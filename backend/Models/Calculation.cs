@@ -2,10 +2,10 @@ namespace backend.Models;
 
 public class Calculation
 {
-    public string Method { get; set; } = string.Empty;
-    public decimal Value { get; set; }
-    public AgeGroup AgeGroup { get; set; } = new ();
-    public string Gender { get; set; } = string.Empty;
-    public int Factor { get; set; }
-    public decimal UsageValue { get; set; }
+    public string Method { get; init; } = string.Empty;
+    public decimal Value { get; init; }
+    public AgeGroup AgeGroup { get; init; } = new (0, 999);
+    public Gender Gender { get; init; }
+    public int Factor { get; init; }
+    public decimal UsageValue { get; init; }
 }

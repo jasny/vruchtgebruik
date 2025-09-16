@@ -1,7 +1,7 @@
 namespace backend.Models;
 
-public class AgeGroup
+public record AgeGroup(int From, int To)
 {
-    public int From { get; set; } = 0;
-    public int To { get; set; } = 999;
+    public bool InRange(int age) =>
+        age >= From && age <= To;
 }

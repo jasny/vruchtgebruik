@@ -1,0 +1,27 @@
+bin/
+obj/
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+*.vs/
+*.vscode/
+.idea
+*.iml
+
+# Test results
+TestResult*/
+*.coverage
+*.coveragexml
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+project.lock.json
+
+# Logs
+*.log
+
