@@ -15,11 +15,11 @@ export interface CalculationInput {
 export interface Calculation {
   method: string;
   value: number;
-  age_group: {
+  ageGroup: {
     from: number;
     to: number;
   },
   gender: Gender;
   factor: number;
-  usage_value: number;
+  usageValue: number;
 }

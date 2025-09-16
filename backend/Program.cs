@@ -7,14 +7,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSingleton<ICalculationMethod, OneLife>();
-builder.Services.AddSingleton<CalculationService>();
+builder.Services.AddSingleton<ICalculationService, CalculationService>();
 
 builder.Services
     .AddControllers()
     .AddJsonOptions(o =>
     {
         o.JsonSerializerOptions.Converters.Add(new JsonEnumLowerCaseConverter<Gender>());
-        o.JsonSerializerOptions.PropertyNamingPolicy = new JsonSnakeCasePolicy();
     });
 
 builder.Services.AddEndpointsApiExplorer();
@@ -53,3 +52,5 @@ app.UseCors("AllowLocalhost");
 
 app.MapControllers();
 app.Run();
+
+public partial class Program { }

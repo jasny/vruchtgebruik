@@ -13,7 +13,7 @@ public sealed class MethodExistsAttribute : ValidationAttribute
             return new ValidationResult("Method is required.");
         }
 
-        var calcService = (CalculationService?)context.GetService(typeof(CalculationService));
+        var calcService = (ICalculationService?)context.GetService(typeof(ICalculationService));
         if (calcService is null)
         {
             throw new InvalidOperationException("CalculationService is not initialized.");

@@ -26,10 +26,10 @@ describe('CalculationResult', () => {
     const data: Calculation = {
       method: 'een_leven',
       value: 100000,
-      age_group: { from: 0, to: 29 },
+      ageGroup: { from: 0, to: 29 },
       gender: 'v',
       factor: 22,
-      usage_value: 50000,
+      usageValue: 50000,
     };
 
     fixture.componentRef.setInput('result', data);

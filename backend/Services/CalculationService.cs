@@ -2,7 +2,7 @@ namespace backend.Services;
 
 using Models;
 
-public class CalculationService
+public class CalculationService : ICalculationService
 {
     private readonly Dictionary<string, ICalculationMethod> _methodsByName;
 

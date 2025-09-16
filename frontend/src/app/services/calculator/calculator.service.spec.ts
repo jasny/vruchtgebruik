@@ -48,10 +48,10 @@ describe('CalculatorService', () => {
     const response: Calculation = {
       method: 'een_leven',
       value: 4200,
-      age_group: { from: 0, to: 22 },
+      ageGroup: { from: 0, to: 22 },
       gender: 'v',
       factor: 22,
-      usage_value: 2100,
+      usageValue: 2100,
     };
     req.flush(response);
 

@@ -6,7 +6,7 @@ namespace backend.Controllers;
 
 [ApiController]
 [Route("")]
-public class CalculationController(CalculationService service) : Controller
+public class CalculationController(ICalculationService service) : Controller
 {
     [HttpPost("calculate")]
     [ProducesResponseType(typeof(Calculation), 200)]

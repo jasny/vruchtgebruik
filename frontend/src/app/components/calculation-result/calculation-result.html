@@ -16,7 +16,7 @@
       <div class="row">
         <span class="label">
           Factor
-          <app-factor-label [gender]="res.gender" [ageGroup]="res.age_group" />
+          <app-factor-label [gender]="res.gender" [ageGroup]="res.ageGroup" />
         </span>
         <span class="value">
           {{ res.factor }}
@@ -24,7 +24,7 @@
       </div>
       <div class="row highlight">
         <span class="label">Vruchtgebruikwaarde</span>
-        <span class="value">{{ res.usage_value | currency:'EUR':'symbol':'1.0-2' }}</span>
+        <span class="value">{{ res.usageValue | currency:'EUR':'symbol':'1.0-2' }}</span>
       </div>
     </div>
   }

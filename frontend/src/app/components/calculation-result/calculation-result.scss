@@ -8,14 +8,14 @@ h2 {
 
 .result-grid {
   display: grid;
-  gap: 0.75rem;
 }
 
 .row {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  padding: 0.25rem 0.5rem;
+  padding: 0 0.5rem;
+  line-height: 3em;
   border-radius: 6px;
 
   & + & {
