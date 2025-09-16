@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
-import { Calculation } from '../../../lib/types';
+import { Calculation } from '@lib/types';
 import { ButtonModule } from 'primeng/button'
 import { FactorLabel } from '../factor-label/factor-label'
 

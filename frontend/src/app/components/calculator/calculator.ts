@@ -1,7 +1,8 @@
-import { Component, signal } from '@angular/core';
-import { Calculation } from '@lib/types';
+import { Component, inject, signal } from '@angular/core';
+import { Calculation, CalculationInput } from '@lib/types';
 import { CalculationForm } from '@app/components/calculation-form';
 import { CalculationResult } from '@app/components/calculation-result';
+import { CalculatorService } from '@app/services/calculator/calculator.service';
 
 @Component({
   selector: 'app-calculator',
@@ -13,16 +14,12 @@ import { CalculationResult } from '@app/components/calculation-result';
   styleUrl: './calculator.scss'
 })
 export class Calculator {
+  private readonly calculatorService = inject(CalculatorService);
   readonly result = signal<Calculation | null>(null);
 
-  onFormSubmitted = (input: unknown): void => {
-    this.result.set({
-      method: 'een_leven',
-      value: (input as any).value ?? 0,
-      age_group: { from: 18, to: 29 },
-      gender: (input as any).gender ?? 'x',
-      factor: 22,
-      usage_value: Math.round(((input as any).value ?? 0) / 2),
-    });
+  onFormSubmitted = (input: CalculationInput): void => {
+    this.calculatorService
+      .calculate(input)
+      .subscribe((res) => this.result.set(res));
   };
 }

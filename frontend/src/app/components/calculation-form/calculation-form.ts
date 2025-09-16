@@ -42,7 +42,7 @@ export class CalculationForm {
 
   readonly form = this.fb.group({
     value: this.fb.control<number | null>(null, {
-      validators: [Validators.required, Validators.min(0), Validators.pattern(/^\d+(?:[\.,]\d{1,2})?$/)]
+      validators: [Validators.required, Validators.min(0), Validators.pattern(/^\d+(?:[.,]\d{1,2})?$/)]
     }),
     age: this.fb.control<number | null>(null, {
       validators: [Validators.required, Validators.min(0), Validators.max(150), Validators.pattern(/^\d+$/)]
