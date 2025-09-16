@@ -8,18 +8,23 @@ builder.Services.AddSingleton<ICalculationMethod, OneLife>();
 builder.Services.AddSingleton<CalculationService>();
 
 builder.Services.AddControllers();
-
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.RoutePrefix = string.Empty;
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Backend API v1");
+    });
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
+app.MapControllers();
 app.Run();

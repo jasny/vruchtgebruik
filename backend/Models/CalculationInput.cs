@@ -1,9 +1,19 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace backend.Models;
 
 public class CalculationInput
 {
-    public string Method { get; init; } = string.Empty;
+    [Required, Range(0.01, double.MaxValue, ErrorMessage = "Value must be positive.")]
     public decimal Value { get; init; }
+
+    [Required, Range(0, 120)]
     public int Age { get; init; }
+
+    [Required]
     public Gender Gender { get; init; }
+
+    [Required]
+    [MethodExists]
+    public string Method { get; init; } = "";
 }
