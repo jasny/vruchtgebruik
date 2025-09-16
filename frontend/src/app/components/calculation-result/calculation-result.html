@@ -4,7 +4,7 @@
   </ng-template>
 
   <ng-template #subtitle>
-    <div class="subtitle">Methode: één leven</div>
+    <div class="subtitle">Methode: {{ methodLabel() }}</div>
   </ng-template>
 
   @if (result(); as res) {

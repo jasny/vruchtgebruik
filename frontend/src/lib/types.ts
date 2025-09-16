@@ -1,15 +1,19 @@
 export type Gender = 'm' | 'v' | 'x';
-export type Method = 'een_leven';
+
+export interface MethodOption {
+  value: string;
+  label: string;
+}
 
 export interface CalculationInput {
   value: number;
   age: number;
   gender: Gender;
-  method: Method;
+  method: string;
 }
 
 export interface Calculation {
-  method: Method;
+  method: string;
   value: number;
   age_group: {
     from: number;

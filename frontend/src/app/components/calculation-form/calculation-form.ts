@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, LOCALE_ID, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, LOCALE_ID, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -6,7 +6,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { SelectModule } from 'primeng/select'
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card'
-import { CalculationInput, Gender, Method } from '@lib/types'
+import { CalculationInput, Gender, MethodOption } from '@lib/types'
 
 @Component({
   selector: 'app-calculation-form',
@@ -36,9 +36,7 @@ export class CalculationForm {
     { label: 'Onbepaald', value: 'x' as const },
   ];
 
-  readonly methodOptions = [
-    { label: 'Één leven', value: 'een_leven' as const }
-  ];
+  readonly methods = input<readonly MethodOption[]>([]);
 
   readonly form = this.fb.group({
     value: this.fb.control<number | null>(null, {
@@ -48,7 +46,7 @@ export class CalculationForm {
       validators: [Validators.required, Validators.min(0), Validators.max(150), Validators.pattern(/^\d+$/)]
     }),
     gender: this.fb.control<Gender | null>(null, { validators: [Validators.required] }),
-    method: this.fb.control<Method | null>('een_leven', { validators: [Validators.required] })
+    method: this.fb.control<string | null>(this.methods()[0]?.value ?? null, { validators: [Validators.required] })
   });
 
   readonly submitted = output<CalculationInput>();
