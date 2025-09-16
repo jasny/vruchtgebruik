@@ -7,4 +7,8 @@
 app-calculator {
   display: block;
   width: 30rem;
+
+  @media (max-width: 32rem) {
+    width: 100vw;
+  }
 }

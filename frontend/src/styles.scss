@@ -14,3 +14,23 @@ body {
   display: block;
   background: linear-gradient(135deg, #4f46e5, #3b82f6, #06b6d4) fixed;
 }
+
+.p-card {
+  width: 100%;
+
+  @media (max-width: 32rem) {
+    min-height: 100vh;
+    border-radius: 0 !important;
+
+    .p-card-body {
+      min-height: 100vh;
+    }
+
+    .p-card-footer {
+      margin-top: auto;
+    }
+  }
+}
+
+
+
