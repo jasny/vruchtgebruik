@@ -1,7 +1,28 @@
 # Vruchtgebruik Rekentool Opdracht
 
-* De [backend](/backend) is een .NET Core Web Api project.
-* De [frontend](/frontend) is een Angular web applicatie.
+* The [backend](/backend) is a .NET Core Web Api project.
+* The [frontend](/frontend) is an Angular web application.
+
+## Running with Docker
+
+Requirements: [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/).
+
+```bash
+docker compose build
+docker compose up -d
+```
+
+Browse to [http://localhost](http://localhost)
+
+Stop with:
+
+```bash
+docker compose down
+```
+
+_To run the webserver on a different port set environment variable `PORT`._
+
+---
 
 ## Introductie
 
