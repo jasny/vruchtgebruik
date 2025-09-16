@@ -1,0 +1,5 @@
+@if (!result()) {
+  <app-calculation-form (submitted)="onFormSubmitted($event)" />
+} @else {
+  <app-calculation-result [result]="result()!" (newCalculation)="result.set(null)" />
+}

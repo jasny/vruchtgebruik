@@ -1,0 +1,49 @@
+.p-card {
+  width: 100%;
+}
+
+h2 {
+  margin: 0;
+}
+
+.subtitle {
+  margin-bottom: 1rem;
+}
+
+.result-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+
+  & + & {
+    border-top: 1px dashed var(--surface-300, #d0d7de);
+  }
+
+  &.highlight {
+    background: var(--surface-100, #f6f8fa);
+    font-weight: 600;
+  }
+}
+
+.label {
+  color: var(--text-color-secondary, #57606a);
+}
+
+.value {
+  font-variant-numeric: tabular-nums;
+}
+
+.actions {
+  margin-top: 1.5rem;
+
+  button {
+    width: 100%;
+  }
+}

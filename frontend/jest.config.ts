@@ -7,6 +7,10 @@ const config: Config = {
   moduleFileExtensions: ['ts', 'html', 'js'],
   // Treat TypeScript files as ESM so Angular ESM packages work in Jest 30
   extensionsToTreatAsEsm: ['.ts'],
+  moduleNameMapper: {
+    '^@app/(.*)$': '<rootDir>/src/app/$1',
+    '^@lib/(.*)$': '<rootDir>/src/lib/$1'
+  },
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

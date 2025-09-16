@@ -1,0 +1,37 @@
+<p-card>
+  <ng-template #title>
+    <h2>Resultaat</h2>
+  </ng-template>
+
+  <ng-template #subtitle>
+    <div class="subtitle">Methode: één leven</div>
+  </ng-template>
+
+  @if (result(); as res) {
+    <div class="result-grid">
+      <div class="row">
+        <span class="label">Eigendomswaarde</span>
+        <span class="value">{{ res.value | currency:'EUR':'symbol':'1.0-2' }}</span>
+      </div>
+      <div class="row">
+        <span class="label">
+          Factor
+          <app-factor-label [gender]="res.gender" [ageGroup]="res.age_group" />
+        </span>
+        <span class="value">
+          {{ res.factor }}
+        </span>
+      </div>
+      <div class="row highlight">
+        <span class="label">Vruchtgebruikwaarde</span>
+        <span class="value">{{ res.usage_value | currency:'EUR':'symbol':'1.0-2' }}</span>
+      </div>
+    </div>
+  }
+
+  <ng-template #footer>
+    <div class="actions">
+      <button pButton class="p-button-outlined" (click)="onNewCalculation()">Nieuwe berekening</button>
+    </div>
+  </ng-template>
+</p-card>

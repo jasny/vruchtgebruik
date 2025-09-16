@@ -1,0 +1,7 @@
+<small>
+  ({{ genderDescription() }} -
+  @if ((ageGroup()?.to ?? 999) >= 999) { vanaf }
+  @if ((ageGroup()?.from ?? 0) > 0) { {{ ageGroup()!.from }} }
+  @if ((ageGroup()?.to ?? 999) < 999) { tot {{ ageGroup()!.to }} }
+  jaar)
+</small>

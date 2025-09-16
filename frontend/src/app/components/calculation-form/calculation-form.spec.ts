@@ -1,24 +1,24 @@
 import { TestBed } from '@angular/core/testing';
 import { LOCALE_ID } from '@angular/core';
-import { CalculationFormComponent, CalculationFormValue } from './calculation-form.component';
+import { CalculationForm } from './calculation-form';
 
-describe('CalculationFormComponent', () => {
+describe('CalculationForm', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CalculationFormComponent],
+      imports: [CalculationForm],
       providers: [{ provide: LOCALE_ID, useValue: 'nl-NL' }]
     }).compileComponents();
   });
 
   it('should create the component', () => {
-    const fixture = TestBed.createComponent(CalculationFormComponent);
+    const fixture = TestBed.createComponent(CalculationForm);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
 
   it('should validate fields and emit value on submit when valid', () => {
-    const fixture = TestBed.createComponent(CalculationFormComponent);
+    const fixture = TestBed.createComponent(CalculationForm);
     const comp = fixture.componentInstance;
     fixture.detectChanges();
 
@@ -35,7 +35,7 @@ describe('CalculationFormComponent', () => {
     // Set valid values
     comp.form.controls.value.setValue(1234.56);
     comp.form.controls.age.setValue(45);
-    comp.form.controls.gender.setValue('man');
+    comp.form.controls.gender.setValue('m');
     comp.form.controls.method.setValue('een_leven');
     fixture.detectChanges();
 
@@ -51,13 +51,13 @@ describe('CalculationFormComponent', () => {
     expect(emitSpy).toHaveBeenCalledWith({
       value: 1234.56,
       age: 45,
-      gender: 'man',
+      gender: 'm',
       method: 'een_leven'
     });
   });
 
   it('should mark controls touched and not emit when invalid on submit', () => {
-    const fixture = TestBed.createComponent(CalculationFormComponent);
+    const fixture = TestBed.createComponent(CalculationForm);
     const comp = fixture.componentInstance;
 
     const emitSpy = jest.spyOn(comp.submitted, 'emit');
@@ -74,7 +74,7 @@ describe('CalculationFormComponent', () => {
   });
 
   it('should enforce age integer pattern and max 150', () => {
-    const fixture = TestBed.createComponent(CalculationFormComponent);
+    const fixture = TestBed.createComponent(CalculationForm);
     const comp = fixture.componentInstance;
 
     // Age decimal should be invalid due to pattern /^\d+$/

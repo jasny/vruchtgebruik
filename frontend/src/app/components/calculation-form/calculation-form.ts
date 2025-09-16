@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, LOCALE_ID, inject, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, LOCALE_ID, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -6,16 +6,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { SelectModule } from 'primeng/select'
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card'
-
-export type Gender = 'man' | 'vrouw' | 'x';
-export type Method = 'een_leven';
-
-export interface CalculationFormValue {
-  value: number;
-  age: number;
-  gender: Gender;
-  method: Method;
-}
+import { CalculationInput, Gender, Method } from '@lib/types'
 
 @Component({
   selector: 'app-calculation-form',
@@ -28,20 +19,20 @@ export interface CalculationFormValue {
     SelectModule,
     ButtonModule,
   ],
-  templateUrl: './calculation-form.component.html',
-  styleUrl: './calculation-form.component.scss',
+  templateUrl: './calculation-form.html',
+  styleUrl: './calculation-form.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'calculation-form'
   }
 })
-export class CalculationFormComponent {
+export class CalculationForm {
   readonly localeId = inject(LOCALE_ID);
   private readonly fb = inject(FormBuilder);
 
   readonly genderOptions = [
-    { label: 'Man', value: 'man' as const },
-    { label: 'Vrouw', value: 'vrouw' as const },
+    { label: 'Man', value: 'm' as const },
+    { label: 'Vrouw', value: 'v' as const },
     { label: 'Onbepaald', value: 'x' as const },
   ];
 
@@ -60,7 +51,7 @@ export class CalculationFormComponent {
     method: this.fb.control<Method | null>('een_leven', { validators: [Validators.required] })
   });
 
-  readonly submitted = output<CalculationFormValue>();
+  readonly submitted = output<CalculationInput>();
 
   onSubmit(): void {
     if (this.form.invalid) {

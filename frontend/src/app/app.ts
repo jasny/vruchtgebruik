@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { CalculationFormComponent } from './components/calculation-form/calculation-form.component';
+import { Calculator } from '@app/components/calculator'
 
 @Component({
   selector: 'app-root',
-  imports: [CalculationFormComponent],
+  imports: [Calculator],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
