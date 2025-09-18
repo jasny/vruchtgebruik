@@ -12,8 +12,6 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - backend
-    environment:
-      - PORT=80
     ports:
-      - "${PORT}:80"     
+      - "${PORT:-80}:80"     
 
